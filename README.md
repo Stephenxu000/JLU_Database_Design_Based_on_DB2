@@ -1,0 +1,2 @@
+# JLU_Database_Design_Based_on_DB2
+基于DB2与JavaGUI的吉林大学数据库课设
