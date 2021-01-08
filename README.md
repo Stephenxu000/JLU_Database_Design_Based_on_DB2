@@ -230,12 +230,35 @@ if(conn != null){
 
 ### 任务5：实现单行插入、多行插入、通过子查询插入功能。
 
-
+<div align=center>
+ <img src="https://github.com/Stephenxu000/JLU_Database_Design_Based_on_DB2/blob/master/picture/task_5.png" alt="任务5" width="900" height="750" />
+ </div>
 
 ### 任务6：修改讲结果集中空的列值均已“空”形式显示。
 
+<div align=center>
+ <img src="https://github.com/Stephenxu000/JLU_Database_Design_Based_on_DB2/blob/master/picture/task_6_q1.png" alt="任务6_q1" width="480" height="510" />
+ </div>
+判断字符串是否是空值时，不应该用==，而应该用equals()，==比较的是地址，equals比较的是字符串的内容。
 
+当我使用equals时，我发现查询数据库时，不同属性会返回不同个空格（即该属性长度的空格数目），故用split(“ ”)，若分出来的length为0，则为空。
 
+<div align=center>
+ <img src="https://github.com/Stephenxu000/JLU_Database_Design_Based_on_DB2/blob/master/picture/task_6_q2.png" alt="任务6_q2" width="260" height="500" />
+ </div>
+插入null的值，我原来代码
+
+`setString(i+1,”null”)`
+
+数据库处理是把字符串”null”赋给该属性，导致长度超标。后改成
+`ps.setString(i+1,null);`
+而在我窗口插入的记录，若空，会返回null，在前面需要增加这种情况，让它在表格中为“空”。
+
+这里其实我没搞懂，为什么同样数据库记录都为空，有的返回是null，有的返回是该属性长度的空格，欢迎给我留言。
+
+ <div align=center>
+ <img src="https://github.com/Stephenxu000/JLU_Database_Design_Based_on_DB2/blob/master/picture/task_6.png" alt="任务6" width="900" height="750" />
+ </div>
 ### 任务7：进行以对话框形式提示所有的违反约束，类型不匹配等操纵类错误。
 
 此处我偷懒了，我直接把异常的错误信息全输出来了，这里可以判断返回的SQLSTATE进行分类提示处理。下面我把提示框的类型给例举一下吧
@@ -256,7 +279,17 @@ JOptionPane.showMessageDialog(null, "我是问题框", "问题框", JOptionPane.
 ### 任务8：实现结果集中任意行、任意列的修改操作。
 
 程序好像有点问题，要先按修改按钮才能启动鼠标事件监听器，再按动表格某个单元格，输入数据即可修改。
+<div align=center>
+ <img src="https://github.com/Stephenxu000/JLU_Database_Design_Based_on_DB2/blob/master/picture/task_8.png" alt="任务8" width="900" height="750" />
+ </div>
 
 ### 任务10：实现数据库中读取、插入图片功能。
-
+#### 读取操作
+<div align=center>
+ <img src="https://github.com/Stephenxu000/JLU_Database_Design_Based_on_DB2/blob/master/picture/task_10_equery.png" alt="任务10_1" width="950" height="550" />
+ </div>
 忘记rs.close();重传图片会报错，因为CLOB、BLOB大对象循环结果集中不能重新执行数据库查询操作。
+#### 插入操作
+<div align=center>
+ <img src="https://github.com/Stephenxu000/JLU_Database_Design_Based_on_DB2/blob/master/picture/task_10_insert.png" alt="任务10_2" width="950" height="550" />
+ </div>
